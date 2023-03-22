@@ -1,0 +1,57 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-2">
+  <!-- <a class="navbar-brand" href="#">Navbar</a> -->
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    {% if user.is_authenticated %}
+    <p style="color: white; margin-top: 2px">
+      <button
+        class="badge text-uppercase"
+        style="width: 100px; margin-left: 20px; margin-top: 10px"
+        disabled
+      >
+        {{ user.username }}
+      </button>
+    </p>
+    {% endif %}
+    <ul class="navbar-nav ml-auto mr-5">
+      <li class="nav-item">
+        <a class="nav-link" href="{%url 'ml_app:home'%}"> <b> Home </b></a>
+      </li>
+      {% if not user.is_authenticated %}
+      <li class="nav-item">
+        <a class="nav-link" href="{%url 'authentication:login'%}">
+          <b> Login </b></a
+        >
+      </li>
+      {% endif %} {% if user.is_authenticated %}
+      <li class="nav-item">
+        <a class="nav-link" href="{%url 'authentication:history'%}">
+          <b>History </b>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{%url 'authentication:logout'%}">
+          <b>Logout </b>
+        </a>
+      </li>
+      {% endif %}
+      <!-- <li class="nav-item">
+                <a class="nav-link" href="{%url 'ml_app:about'%}">About</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">GitHub</a>
+            </li> -->
+    </ul>
+  </div>
+</nav>
